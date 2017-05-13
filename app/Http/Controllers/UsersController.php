@@ -13,7 +13,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::paginate(1);
+        $users = User::paginate(5);
         
         return view('users.index', [
             'users' => $users,
@@ -22,7 +22,7 @@ class UsersController extends Controller
     
       public function show($id)
     {
-        $user = User::find($id);
+     $user = User::find($id);
         $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(10);
         $count_microposts = $user->microposts()->count();
         
@@ -34,7 +34,6 @@ class UsersController extends Controller
         $data += $this->counts($user);
         
         return view('users.show', $data);
-       
     }
       public function followings($id)
     {
