@@ -15,7 +15,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::paginate(5);
-        $user =  $user = Auth::user();
+        $user = Auth::user();
         
         return view('users.index', [
             'users' => $users,
@@ -65,5 +65,18 @@ class UsersController extends Controller
         $data += $this->counts($user);
         
         return view('users.followers', $data);
+    }
+    
+    public function favorite($id)
+    {
+         $user = User::find($id);
+        $favorite = $user->favorite()->paginate(5);
+        
+        $user = Auth::user();
+        
+        return view('users.index', [
+            'users' => $favorite,
+            'user'  => $user,
+        ]);
     }
 }

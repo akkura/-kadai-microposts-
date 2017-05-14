@@ -13,6 +13,7 @@
                 <p>{!! link_to_route('users.show', 'View profile', ['id' => $user->id]) !!}</p>
             </div>
             @include('user_follow.follow_button',['user' => $user])
+            @include('user_favorite.favorite_button',['user' => $user])
         </div>
     </li>
 @endforeach
