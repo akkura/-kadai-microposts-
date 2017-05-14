@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 use App\User;
 
@@ -14,9 +15,11 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::paginate(5);
+        $user =  $user = Auth::user();
         
         return view('users.index', [
             'users' => $users,
+            'user'  => $user,
         ]);
     }
     
